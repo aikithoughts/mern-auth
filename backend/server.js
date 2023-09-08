@@ -18,8 +18,6 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use('/api/users', userRoutes);
-
 if (process.env.NODE_ENV === 'production') {
     const __dirname = path.resolve();
     app.use(express.static(path.join(__dirname, '/frontend/build')));
@@ -32,6 +30,8 @@ if (process.env.NODE_ENV === 'production') {
         res.send('API is running....');
     });
 }
+
+app.use('/api/users', userRoutes);
 
 app.use(notFound);
 app.use(errorHandler);
